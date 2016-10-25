@@ -17,7 +17,7 @@ class db:
         #print("done")
 
     def add(self, data):
-        if self.search(data) < 0:
+        if self.find(data) == False:
             c.execute("insert into {}(word) values('{}')".format(self.tableName, data))
             conn.commit()
 
@@ -30,12 +30,15 @@ class db:
         rows = c.fetchall()
         print(rows)
 
-    def search(self, data):
+    def find(self, data):
         c.execute("select * from {} where word='{}'".format(self.tableName, data))
         rows = c.fetchall()
         if len(rows) < 1:
-            return -1
-        return rows[0][0]
+            return False
+        #return rows[0][0]
+        return True
+
+
 
 #c.execute("drop table list")
 
