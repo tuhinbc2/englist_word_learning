@@ -7,9 +7,10 @@ class tokenizer():
         self.q = Queue.Queue()
         self.table = string.maketrans(string.punctuation + "1234567890", (len(string.punctuation) + 10) * " ")
 
-    def nextLine():
+    def nextLine(self):
         line = self.file.readline()
-        if line == None:
+        #print('New line found:' + line)
+        if line == None or len(line) == 0:
             return False
 
         #for c in string.punctuation:
@@ -18,14 +19,15 @@ class tokenizer():
         line = line.translate(self.table)
         wordlist = line.split()
         for a in wordlist:
-            if a.isalpha() and len(a) > 1:
+            if a.isalpha() and len(a) > 2:
                 self.q.put(a)
 
         return True
 
-    def nextWord():
+    def nextWord(self):
         if self.q.qsize() == 0:
             if self.nextLine() == False:
+                self.file.close()
                 return None
 
         return self.q.get()

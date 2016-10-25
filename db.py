@@ -38,6 +38,9 @@ class db:
         #return rows[0][0]
         return True
 
+    def fetchtop5(self):
+        c.execute("select * from {} limit 5;".format(self.tableName))
+        return c.fetchall()
 
 
 #c.execute("drop table list")

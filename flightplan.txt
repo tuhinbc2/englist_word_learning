@@ -1,0 +1,7 @@
+1. Modules:
+
+-gather words
+-select unknown words
+-add unknown words to unknown db
+
+-show unknown words every 2 hours
